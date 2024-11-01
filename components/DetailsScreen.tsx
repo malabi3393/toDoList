@@ -13,7 +13,7 @@ import {
 import Checkbox from "expo-checkbox";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Picker } from "@react-native-picker/picker";
-import ChangeBackground from "./ChangeBackgroundColorScreen";
+import {ChangeBackground, changeC} from "./ChangeBackgroundColorScreen";
 
 
 function DetailsScreen({ navigation }) {
@@ -31,7 +31,7 @@ function DetailsScreen({ navigation }) {
       );
     };
     return (
-      <View style={styles.home}>
+      <View style={changeC.renderStyle()}>
         <View style={styles.heading}>
           <FontAwesome.Button
             name="backward"

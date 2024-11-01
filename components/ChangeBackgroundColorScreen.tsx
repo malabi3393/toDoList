@@ -14,73 +14,40 @@ import Checkbox from "expo-checkbox";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Picker } from "@react-native-picker/picker";
 
-class bkColor {
-  // const [selectedColor, setSelectedColor] = useState("");
-  static selectedColor: string = "#d9d9d9";
-  static state = {
-    colors: [
-      { color: "Pink", value: "pink" },
-      { color: "Red", value: "red" },
-    ],
-    currentLabel: "Pick a background color",
-    color: "blue",
-  };
 
-  public static setSelectedColor(newColor: string) {
-    bkColor.selectedColor = newColor;
-    bkColor.currStyle();
+export class changeC {
+  private static col: string = "pink";
+
+  static renderStyle() {
+
+    return { backgroundColor: changeC.col, flex: 1 };
   }
 
-  //   public static getSelectedColor() {
-  //     return this.selectedColor;
-  //   }
-
-  public static currStyle() {
-    return {
-      backgroundColor: bkColor.selectedColor,
-      flex: 1,
-    };
+  static changeColor(newColor: string) {
+    changeC.col = newColor;
   }
 
-  static render() {
-    return (
-      <Picker
-        style={{ flex: 1 }}
-        selectedValue={this.state.color}
-        onValueChange={(itemValue, itemIndex) =>
-          bkColor.setSelectedColor(itemValue)
-        }
-      >
-        <Picker.Item label="Default Grey" value="#d9d9d9" />
-        <Picker.Item label="Pink" value="pink" />
-        <Picker.Item label="Red" value="red" />
-
-        {this.state.colors.map((c) => {
-          return <Picker.Item label={c.color} value={c.value} />;
-        })}
-      </Picker>
-    );
+  static getColor(){
+    return changeC.col;
   }
+
 }
 
-
-
-function ChangeBackground({ navigation }) {
+export function ChangeBackground({ navigation }) {
   const [col, setCol] = useState("#d9d9d9");
   const [myStyle, setStyle] = useState({ backgroundColor: col, flex: 1 });
-  
+
   const renderStyle = () => {
     return { backgroundColor: col, flex: 1 };
-  }
+  };
   const PickColor = () => {
     return (
       <Picker
         style={{ flex: 1 }}
-        selectedValue={col}
+        selectedValue={changeC.getColor()}
         onValueChange={(colorValue, itemIndex) => {
-          setCol(colorValue);
-          bkColor.setSelectedColor(col);
-          setStyle({ backgroundColor: col, flex: 1 });
+          changeC.changeColor(colorValue);
+          setStyle({ backgroundColor: changeC.getColor(), flex: 1 });
         }}
       >
         <Picker.Item label="Default Grey" value="#d9d9d9" />
@@ -91,7 +58,7 @@ function ChangeBackground({ navigation }) {
   };
 
   return (
-    <View style={renderStyle()}>
+    <View style={changeC.renderStyle()}>
       <View style={styles.heading}>
         <FontAwesome.Button
           name="backward"
@@ -103,10 +70,6 @@ function ChangeBackground({ navigation }) {
         ></FontAwesome.Button>
         <View style={styles.headingText}>
           <Text style={styles.head2}> Change Background </Text>
-          <Text style={{ flex: 1 }}>
-            The selectd color is: {col} och fran classet det ar{" "}
-            {bkColor.selectedColor}
-          </Text>
         </View>
       </View>
 

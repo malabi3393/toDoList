@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import Checkbox from "expo-checkbox";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { changeC } from "./ChangeBackgroundColorScreen";
 
 
 type ItemProps = {
@@ -48,7 +49,7 @@ type ItemProps = {
     };
   
     return (
-      <View style={styles.home}>
+      <View style={changeC.renderStyle()}>
         <View style={styles.heading}>
           <FontAwesome.Button
             name="gear"
@@ -59,7 +60,7 @@ type ItemProps = {
             onPress={() => navigation.navigate("Details")}
           ></FontAwesome.Button>
           <View style={styles.headingText}>
-            <Text style={styles.head1}>Things to LOL</Text>
+            <Text style={styles.head1}>Things to</Text>
             <Text style={styles.head2}>Remember</Text>
           </View>
         </View>
